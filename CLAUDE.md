@@ -22,3 +22,9 @@ Cake Freedom · VPBank StepUp · TCB Spark · TCB Everyday · MB JCB Ultimate ·
 
 ## Status
 - Phase: Design. Spec: `docs/superpowers/specs/`.
+
+## v2 (accounts + amount-aware) — built on dev, awaiting lagomlab deploy
+- Backend: PocketBase (`backend/`, SQLite). Frontend integrates via `src/lib/pb.ts` (`VITE_PB_URL`).
+- Personalized + amount-aware ranking live in `src/lib/ranking.ts`. Logged-out = v1 behavior.
+- Deploy to `card.lagomlab.tech`: see `docs/RUNBOOK-deploy-lagomlab.md` (lagomlab Claude, after Quân approves dev test).
+- Needs: Google OAuth client (redirect `https://card.lagomlab.tech/api/oauth2-redirect`), `VITE_PB_URL` prod env.
