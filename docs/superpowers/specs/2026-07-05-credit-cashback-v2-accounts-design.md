@@ -36,13 +36,17 @@ default_spend_tier: text   // "lt10"|"m10_30"|"m30_100"|"gte100"
 
 ## 4. Ranking cá nhân hoá (mở rộng logic thuần v1)
 
-`effectiveRate(card, categoryId, { spendTier, merchant?, userPicks? })`:
+`effectiveRate(card, categoryId, { spendTier, merchant?, userPicks?, amount? })`:
 - Nếu **có `userPicks`** cho thẻ này (đã đăng nhập + đã khai): nhóm pick-n áp dụng rate **chỉ khi** `categoryId`
   nằm trong lựa chọn của user cho group đó; ngược lại → `default_rate`. → % **chính xác**, không còn điều kiện "nếu chọn".
 - Không có `userPicks` (anonymous / chưa khai) → hành vi v1 (best-achievable + điều kiện). Giữ nguyên, không phá.
-- `rankCards(..., { userPicks?, onlyOwned?, ownedCards? })`: `onlyOwned` → lọc còn thẻ user giữ.
+- **`amount` (số tiền giao dịch) — v2 CORE:** khi có `amount`, tính **tiền hoàn thực = min(amount × rate, cap_monthly)**
+  và trả `estimatedCashback`. Giải quyết đúng ca của Quân: bảo hiểm 10tr → MB JCB (10%, cap 400k) = 400k **>**
+  Cake (20%, cap 200k) = 200k. `rankCards` khi có `amount` → **xếp theo `estimatedCashback` giảm dần** (không phải rate);
+  không có `amount` → xếp theo rate như trước.
+- `rankCards(..., { userPicks?, onlyOwned?, ownedCards?, amount? })`: `onlyOwned` → lọc còn thẻ user giữ.
 
-Logic vẫn **thuần, test Vitest**. Không đụng backend từ hàm ranking (nhận `userPicks` như tham số).
+Logic vẫn **thuần, test Vitest**. Không đụng backend từ hàm ranking (nhận `userPicks`/`amount` như tham số).
 
 ## 5. Frontend (thêm vào app v1)
 
@@ -68,16 +72,15 @@ Logic vẫn **thuần, test Vitest**. Không đụng backend từ hàm ranking (
 ## 7. Cần Quân/Claude-lagomlab chuẩn bị (external — ghi rõ, không giả định)
 
 - **Google Cloud OAuth Client** (Web): Authorized redirect URIs cho **cả dev** (`http://localhost:8090/api/oauth2-redirect`)
-  **và prod** (domain lagomlab). Client ID + Secret nhập vào PocketBase (không commit).
-- **Domain/hostname trên Cloudflare (lagomlab)** cho PocketBase API — Claude-lagomlab cấu hình lúc deploy.
+  **và prod** (`https://card.lagomlab.tech/api/oauth2-redirect`). Client ID + Secret nhập vào PocketBase (không commit).
+- **Domain PocketBase (prod) = `card.lagomlab.tech`** trên Cloudflare (lagomlab) — Claude-lagomlab cấu hình lúc deploy.
+  `VITE_PB_URL` prod = `https://card.lagomlab.tech`.
 
 ## 8. Out of scope (v2)
 - Multi-node/scaling (single-node cố ý).
-- **Amount-aware ranking** (nhập số tiền → so cap vs rate cho tháng bảo hiểm/học phí lớn) — **stretch/phase 2.1**,
-  không nằm trong v2 core; ghi nhận là ứng viên tiếp theo.
-- Tự deploy prod (Claude-lagomlab làm).
+- Tự deploy prod (Claude-lagomlab làm sau khi Quân duyệt test).
 
-## 9. Open items
-- Lưu trên `users` record (đề xuất, đơn giản) vs collection `profiles` riêng — chọn `users` field cho single-node gọn.
-- `VITE_PB_URL` prod = hostname nào (Claude-lagomlab/Quân chốt khi deploy).
-- Có gộp amount-input vào v2 không (mặc định: không, để 2.1).
+## 9. Đã chốt
+- Lưu trên record `users` (field owned_cards/picks/default_spend_tier) — gọn cho single-node.
+- **Amount-input NẰM TRONG v2 core** (mục 4).
+- Domain prod = `card.lagomlab.tech`; `VITE_PB_URL` prod = `https://card.lagomlab.tech`.
