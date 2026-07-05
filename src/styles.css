@@ -2,3 +2,23 @@
 * { box-sizing: border-box; }
 body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background:var(--bg); color:var(--fg); }
 main { max-width: 560px; margin: 0 auto; padding: 16px; }
+
+.disclaimer { font-size: 13px; color: var(--muted); background: #1c1300; border: 1px solid #3a2a00; padding: 8px 10px; border-radius: 8px; }
+.badge { font-size: 12px; padding: 2px 6px; border-radius: 999px; }
+.conf-high { color: #22c55e; } .conf-medium { color: #eab308; } .conf-low { color: #ef4444; }
+.tier-select { display:flex; flex-direction:column; gap:4px; font-size:13px; color:var(--muted); margin:12px 0; }
+.tier-select select { padding:10px; border-radius:8px; background:var(--card); color:var(--fg); border:1px solid #2a2f3a; font-size:15px; }
+.card-list { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px; }
+.card-row { background:var(--card); border:1px solid #2a2f3a; border-radius:12px; padding:12px; cursor:pointer; }
+.card-row.best { border-color: var(--accent); }
+.card-row-head { display:flex; align-items:center; gap:8px; }
+.card-row-head .rank { width:32px; } .card-name { flex:1; font-weight:600; } .rate { font-size:20px; font-weight:700; color:var(--accent); }
+.conditions { margin:6px 0 0; padding-left:18px; font-size:12px; color:var(--muted); }
+.card-detail .back { background:none; border:none; color:var(--accent); font-size:15px; padding:8px 0; cursor:pointer; }
+.kv { display:grid; grid-template-columns:auto 1fr; gap:4px 12px; font-size:14px; }
+.kv dt { color:var(--muted); } .kv dd { margin:0; }
+.rate-table { width:100%; border-collapse:collapse; font-size:14px; }
+.rate-table td { padding:6px 4px; border-bottom:1px solid #23272f; }
+.rate-table td:last-child { text-align:right; font-weight:600; }
+.notes, .sources { font-size:13px; color:var(--muted); padding-left:18px; }
+.muted { color:var(--muted); }
