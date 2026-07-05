@@ -1,6 +1,7 @@
 # Secrets — never commit
 .env
 .env.*
+!.env.example
 *.key
 secrets/
 # Node / Vite
@@ -12,3 +13,7 @@ dist-ssr/
 # Editor / OS
 .DS_Store
 *.bak.*
+
+# PocketBase runtime
+backend/pb_data/
+backend/pocketbase
