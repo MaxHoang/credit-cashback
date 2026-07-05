@@ -1,0 +1,13 @@
+# Secrets — never commit
+.env
+.env.*
+*.key
+secrets/
+# Node / Vite
+node_modules/
+dist/
+dist-ssr/
+*.local
+# Editor / OS
+.DS_Store
+*.bak.*
