@@ -15,8 +15,10 @@ Cake Freedom · VPBank StepUp · TCB Spark · TCB Everyday · MB JCB Ultimate ·
 - KHÔNG bịa số. UI luôn hiện **disclaimer** "tỷ lệ có thể thay đổi — xác nhận với ngân hàng". Không phải lời khuyên tài chính.
 - Quân (chủ thẻ) là nguồn chuẩn nhất → dễ sửa `cards.json`.
 
-## Run (điền khi build)
-- TBD
+## Run
+- `npm install` · `npm run dev` (5173) · `npm test` · `npm run build`
+- Deploy: push main → GitHub Actions → Pages (bật Pages: Settings → Pages → GitHub Actions).
+- Sửa số liệu: `src/data/cards.json` / `src/data/merchants.json`.
 
 ## Status
 - Phase: Design. Spec: `docs/superpowers/specs/`.
