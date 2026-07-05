@@ -1,0 +1,117 @@
+[
+  {
+    "id": "cake-freedom", "name": "Cake Freedom", "issuer": "Cake by VPBank", "network": "Visa/Mastercard",
+    "annual_fee": 599000, "annual_fee_note": "Miễn nếu chi ≥ 150 triệu/năm",
+    "reward_type": "cashback", "scheme": "pick-n", "min_monthly_spend": 5000000, "monthly_cap_total": 1000000,
+    "default_rate": 0, "excluded_categories": ["xang-dau"],
+    "confidence": "high", "as_of": "2026-07-05",
+    "sources": ["https://cake.vn/dieu-kien-dieu-khoan/dieu-kien-va-dieu-khoan-su-dung-the-tin-dung-cake-freedom"],
+    "notes": ["20% nhưng cap chặt: 200k/nhóm, 1 triệu/tháng; per-tx 50k (≥200k) / 10k (<200k)", "Cần chi ≥ 5 triệu/kỳ mới có hoàn tiền", "Chọn 3 nhóm cố định + 2 nhóm linh hoạt"],
+    "rates": [
+      { "category": "mua-sam-online", "rate": 0.2, "cap_monthly": 200000, "group": "fixed", "confidence": "medium", "note": "nhóm cố định" },
+      { "category": "du-lich", "rate": 0.2, "cap_monthly": 200000, "group": "fixed", "confidence": "medium", "note": "nhóm cố định" },
+      { "category": "thoi-trang", "rate": 0.2, "cap_monthly": 200000, "group": "fixed", "confidence": "medium", "note": "nhóm cố định" },
+      { "category": "an-uong", "rate": 0.2, "cap_monthly": 200000, "group": "flex", "confidence": "medium", "note": "nhóm linh hoạt (chọn 2)" },
+      { "category": "sieu-thi", "rate": 0.2, "cap_monthly": 200000, "group": "flex", "confidence": "medium", "note": "linh hoạt; 1 giao dịch/ngày" },
+      { "category": "tien-loi", "rate": 0.2, "cap_monthly": 200000, "group": "flex", "confidence": "medium", "note": "nhóm linh hoạt" },
+      { "category": "bao-hiem", "rate": 0.2, "cap_monthly": 200000, "group": "flex", "confidence": "medium", "note": "nhóm linh hoạt" },
+      { "category": "giai-tri", "rate": 0.2, "cap_monthly": 200000, "group": "flex", "confidence": "medium", "note": "rạp phim; linh hoạt" }
+    ]
+  },
+  {
+    "id": "vpbank-stepup", "name": "VPBank StepUp", "issuer": "VPBank", "network": "Mastercard",
+    "annual_fee": 499000, "annual_fee_note": "Chưa xác nhận (secondary source)",
+    "reward_type": "cashback", "scheme": "spend-tier", "min_monthly_spend": 0, "monthly_cap_total": null,
+    "default_rate": 0.001, "excluded_categories": ["xang-dau"],
+    "confidence": "medium", "as_of": "2026-07-05",
+    "sources": ["https://www.vpbank.com.vn/ca-nhan/the-tin-dung/vpbank-stepup"],
+    "notes": ["Tự động theo bậc chi tiêu/tháng", "T&C bản mới nhất hết hạn 20/11/2025 — cần xác nhận VPBank", "Shopee/ShopeeFood không tính nhóm online (chỉ 0,1%)"],
+    "rates": [
+      { "category": "mua-sam-online", "rate": 0.06, "cap_monthly": 300000, "tier": "lt10", "online_only": true, "excluded_merchants": ["Shopee", "ShopeeFood"], "confidence": "medium" },
+      { "category": "mua-sam-online", "rate": 0.15, "cap_monthly": 700000, "tier": "m10_30", "online_only": true, "excluded_merchants": ["Shopee", "ShopeeFood"], "confidence": "medium" },
+      { "category": "mua-sam-online", "rate": 0.15, "cap_monthly": 700000, "tier": "m30_100", "online_only": true, "excluded_merchants": ["Shopee", "ShopeeFood"], "confidence": "medium" },
+      { "category": "mua-sam-online", "rate": 0.15, "cap_monthly": 1500000, "tier": "gte100", "online_only": true, "excluded_merchants": ["Shopee", "ShopeeFood"], "confidence": "medium" },
+      { "category": "an-uong", "rate": 0.02, "cap_monthly": 100000, "tier": "lt10", "confidence": "medium" },
+      { "category": "an-uong", "rate": 0.04, "cap_monthly": 200000, "tier": "m10_30", "confidence": "medium" },
+      { "category": "an-uong", "rate": 0.04, "cap_monthly": 200000, "tier": "m30_100", "confidence": "medium" },
+      { "category": "an-uong", "rate": 0.04, "cap_monthly": 200000, "tier": "gte100", "confidence": "medium" }
+    ]
+  },
+  {
+    "id": "tcb-spark", "name": "Techcombank Spark", "issuer": "Techcombank", "network": "Mastercard",
+    "annual_fee": 899000, "annual_fee_note": "Miễn năm sau nếu chi ≥ 150 triệu/năm",
+    "reward_type": "points", "scheme": "flat", "min_monthly_spend": 0, "monthly_cap_total": 500000,
+    "default_rate": 0.001, "excluded_categories": [],
+    "confidence": "medium", "as_of": "2026-07-05",
+    "sources": ["https://techcombank.com/en/personal/spend/cards/credit-card/techcombank-spark"],
+    "notes": ["Tích U-Point — quy đổi 1 điểm = 1 VND (Quân xác nhận)", "Cap 500.000 điểm/tháng"],
+    "rates": [
+      { "category": "du-lich", "rate": 0.08, "confidence": "medium" },
+      { "category": "thoi-trang", "rate": 0.08, "confidence": "medium" },
+      { "category": "giai-tri", "rate": 0.08, "confidence": "medium" },
+      { "category": "an-uong", "rate": 0.02, "confidence": "medium" },
+      { "category": "mua-sam-online", "rate": 0.02, "confidence": "medium" }
+    ]
+  },
+  {
+    "id": "tcb-everyday", "name": "Techcombank Everyday", "issuer": "Techcombank", "network": "Visa",
+    "annual_fee": 599000, "annual_fee_note": "Miễn năm sau nếu chi ≥ 150 triệu/năm",
+    "reward_type": "points", "scheme": "spend-tier", "min_monthly_spend": 0, "monthly_cap_total": 500000,
+    "default_rate": 0.001, "excluded_categories": [],
+    "confidence": "medium", "as_of": "2026-07-05",
+    "sources": ["https://techcombank.com/en/personal/spend/cards/credit-card/techcombank-everyday"],
+    "notes": ["Tích U-Point (1 điểm = 1 VND)", "Cap 500k điểm (10-30tr) / 700k (≥30tr)", "Online quốc tế 8% (nội địa 3%)"],
+    "rates": [
+      { "category": "mua-sam-online", "rate": 0.03, "tier": "lt10", "confidence": "medium", "note": "quốc tế 8%" },
+      { "category": "mua-sam-online", "rate": 0.03, "cap_monthly": 500000, "tier": "m10_30", "confidence": "medium", "note": "quốc tế 8%" },
+      { "category": "mua-sam-online", "rate": 0.03, "cap_monthly": 700000, "tier": "m30_100", "confidence": "medium", "note": "quốc tế 8%" },
+      { "category": "mua-sam-online", "rate": 0.03, "cap_monthly": 700000, "tier": "gte100", "confidence": "medium", "note": "quốc tế 8%" },
+      { "category": "an-uong", "rate": 0.01, "confidence": "medium" }
+    ]
+  },
+  {
+    "id": "mb-jcb-ultimate", "name": "MB JCB Ultimate", "issuer": "MBBank", "network": "JCB",
+    "annual_fee": 800000, "annual_fee_note": "Thẻ phụ miễn phí",
+    "reward_type": "cashback", "scheme": "flat", "min_monthly_spend": 0, "monthly_cap_total": 800000,
+    "default_rate": 0.001, "excluded_categories": [],
+    "confidence": "high", "as_of": "2026-07-05",
+    "sources": ["https://tienphong.vn/mb-jcb-lam-moi-tron-bo-uu-dai-the-dap-ung-moi-nhu-cau-chi-tieu-hoan-tien-toi-10-moi-thang-post1808090.tpo", "https://rcgv.vn/article/mb-jcb-ultimate-chinh-thuc-len-app/"],
+    "notes": ["Bảo hiểm 10% (sub-cap 400k), Sức khoẻ/Giáo dục 10%, cap tổng 800k/kỳ", "Các nhóm khác chưa rõ ưu đãi (về mức cơ bản)"],
+    "rates": [
+      { "category": "bao-hiem", "rate": 0.1, "cap_monthly": 400000, "confidence": "high", "note": "mua qua MBAL/MIC trên app MB" },
+      { "category": "suc-khoe-giao-duc", "rate": 0.1, "cap_monthly": 800000, "confidence": "high" }
+    ]
+  },
+  {
+    "id": "mb-priority-visa-signature", "name": "MB Priority Visa Signature", "issuer": "MBBank", "network": "Visa",
+    "annual_fee": 1299000, "annual_fee_note": "Miễn năm 1; miễn nếu chi ≥ 100 triệu/năm",
+    "reward_type": "cashback", "scheme": "pick-n", "min_monthly_spend": 10000000, "monthly_cap_total": 800000,
+    "default_rate": 0.001, "excluded_categories": [],
+    "confidence": "medium", "as_of": "2026-07-05",
+    "sources": ["https://www.mbbank.com.vn/26/213/2608/Chi-tiet/the-tin-dung-quoc-te-mb-visa-priority-signature-2026-1-29-13-53-43", "https://rcgv.vn/"],
+    "notes": ["Cần chi ≥ 10 triệu/tháng mới có hoàn tiền", "Mâm 1 (chọn 1, 10%, cap 400k); Mâm 2 (chọn 2, 2%, cap 400k); tổng 800k", "Sinh nhật x2 tỷ lệ", "Vị trí nhóm Sức khoẻ chưa chắc"],
+    "rates": [
+      { "category": "an-uong", "rate": 0.1, "cap_monthly": 400000, "group": "mam1", "confidence": "medium", "note": "Mâm 1 (chọn 1 nhóm 10%)" },
+      { "category": "du-lich", "rate": 0.1, "cap_monthly": 400000, "group": "mam1", "confidence": "medium", "note": "Mâm 1" },
+      { "category": "giai-tri", "rate": 0.1, "cap_monthly": 400000, "group": "mam1", "confidence": "medium", "note": "Mâm 1" },
+      { "category": "bao-hiem", "rate": 0.1, "cap_monthly": 400000, "group": "mam1", "confidence": "low", "note": "Mâm 1 (chưa chắc)" },
+      { "category": "sieu-thi", "rate": 0.02, "cap_monthly": 400000, "group": "mam2", "confidence": "medium", "note": "Mâm 2 (chọn 2 nhóm 2%)" },
+      { "category": "thoi-trang", "rate": 0.02, "cap_monthly": 400000, "group": "mam2", "confidence": "medium", "note": "Mâm 2" },
+      { "category": "mua-sam-online", "rate": 0.02, "cap_monthly": 400000, "group": "mam2", "confidence": "medium", "note": "Mâm 2" },
+      { "category": "suc-khoe-giao-duc", "rate": 0.02, "cap_monthly": 400000, "group": "mam2", "confidence": "low", "note": "Mâm 2 (chưa chắc)" }
+    ]
+  },
+  {
+    "id": "vib-travel-elite", "name": "VIB Travel Élite", "issuer": "VIB", "network": "Mastercard",
+    "annual_fee": 1299000, "annual_fee_note": "Chưa xác nhận",
+    "reward_type": "miles", "scheme": "flat", "min_monthly_spend": 0, "monthly_cap_total": null,
+    "default_rate": 0.003, "excluded_categories": [],
+    "confidence": "low", "as_of": "2026-07-05",
+    "sources": ["https://www.vib.com.vn/vn/the-tin-dung/travel-elite"],
+    "notes": ["Giá trị chính = phòng chờ sân bay + ưu đãi du lịch; chương trình hoàn tiền yếu/đã hết hạn", "Tích dặm (~1 dặm/30.000đ ≈ 0,3%)"],
+    "rates": [
+      { "category": "nuoc-ngoai", "rate": 0.003, "confidence": "low", "note": "0% phí ngoại tệ 3 kỳ đầu" },
+      { "category": "du-lich", "rate": 0.003, "confidence": "low", "note": "ưu đãi đối tác + phòng chờ" }
+    ]
+  }
+]
