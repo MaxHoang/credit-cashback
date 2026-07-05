@@ -45,7 +45,11 @@ export interface RankedCard {
   confidence: Confidence;
   conditions: string[];
   note?: string;
+  estimatedCashback?: number | null;
 }
+
+export interface UserPicks { [cardId: string]: { [group: string]: string | string[] }; }
+export interface Profile { owned_cards: string[]; picks: UserPicks; default_spend_tier: SpendTierId; }
 
 export interface Suggestion { kind: "merchant" | "category"; label: string; categoryId: CategoryId; }
 export interface ResolveResult {
