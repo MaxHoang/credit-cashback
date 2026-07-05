@@ -9,6 +9,15 @@ interface EffResult {
 
 const CONF_ORDER: Record<Confidence, number> = { high: 3, medium: 2, low: 1 };
 
+// Philosophy (A) — best-achievable rate: fixed/flex/mam1/mam2 đều là "chọn N trong M"
+// pick group, đều hiện rate tốt nhất có thể đạt, kèm điều kiện rõ ràng để không đánh lừa
+// người dùng (trừ "fixed" — luôn bật, không có điều kiện chọn).
+const PICK_CONDITION: Record<string, string> = {
+  flex: "Chỉ đạt nếu bạn chọn nhóm này (nhóm linh hoạt — Cake chọn 2/5 nhóm)",
+  mam1: "Chỉ đạt nếu bạn chọn nhóm này (Mâm 1 — chỉ chọn 1 nhóm/tháng)",
+  mam2: "Chỉ đạt nếu bạn chọn nhóm này (Mâm 2 — chọn 2 nhóm/tháng)",
+};
+
 export function effectiveRate(card: Card, categoryId: string, opts: Opts): EffResult {
   const conditions: string[] = [];
 
@@ -29,20 +38,12 @@ export function effectiveRate(card: Card, categoryId: string, opts: Opts): EffRe
     chosen = undefined;
   }
 
-  // "flex" pick-n groups are an open pool (e.g. chọn 2 trong 5) — không thể giả định
-  // danh mục đang tra cứu nằm trong nhóm đã thực sự chọn, nên không cộng dồn rate.
-  // "fixed"/"mam*" là toàn bộ cơ chế thưởng của thẻ nên vẫn giả định đã chọn.
-  if (chosen && card.scheme === "pick-n" && chosen.group === "flex") {
-    conditions.push(`Cần chọn nhóm linh hoạt này để nhận ${chosen.rate * 100}% (mặc định về mức cơ bản)`);
-    chosen = undefined;
-  }
-
   const rate = chosen ? chosen.rate : card.default_rate;
   const capMonthly = (chosen?.cap_monthly ?? card.monthly_cap_total) ?? null;
 
   if (card.min_monthly_spend > 0) conditions.push(`Cần chi tối thiểu ${formatVnd(card.min_monthly_spend)}/tháng`);
   if (capMonthly) conditions.push(`Cap ${formatVnd(capMonthly)}/tháng`);
-  if (chosen?.group) conditions.push(`Cần chọn nhóm ưu đãi (${chosen.group})`);
+  if (chosen?.group && PICK_CONDITION[chosen.group]) conditions.push(PICK_CONDITION[chosen.group]);
   if (card.reward_type === "points") conditions.push("Ước tính từ điểm thưởng (1 điểm = 1 VND)");
   if (card.reward_type === "miles") conditions.push("Ước tính từ dặm thưởng");
   if (chosen?.note) conditions.push(chosen.note);

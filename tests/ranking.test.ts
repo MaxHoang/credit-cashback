@@ -40,14 +40,29 @@ describe("effectiveRate", () => {
 });
 
 describe("rankCards", () => {
-  it("ranks MB JCB Ultimate #1 for insurance (10%)", () => {
+  it("ranks Cake Freedom #1 for insurance (20%, best-achievable flex rate)", () => {
     const ranked = rankCards("bao-hiem", cards, { spendTier: "m10_30" });
-    expect(ranked[0].card.id).toBe("mb-jcb-ultimate");
-    expect(ranked[0].rate).toBe(0.1);
+    expect(ranked[0].card.id).toBe("cake-freedom");
+    expect(ranked[0].rate).toBe(0.2);
+    expect(ranked[0].conditions.some((c) => c.includes("linh hoạt"))).toBe(true);
   });
 
   it("sorts by rate descending", () => {
     const ranked = rankCards("an-uong", cards, { spendTier: "m10_30" });
     for (let i = 1; i < ranked.length; i++) expect(ranked[i - 1].rate).toBeGreaterThanOrEqual(ranked[i].rate);
+  });
+
+  it("surfaces the pick-group mutual-exclusion warning for an-uong's top result", () => {
+    const ranked = rankCards("an-uong", cards, { spendTier: "m10_30" });
+    expect(
+      ranked[0].conditions.some((c) => c.includes("chọn nhóm") || c.includes("Mâm") || c.includes("linh hoạt")),
+    ).toBe(true);
+  });
+
+  it("surfaces the pick-group mutual-exclusion warning for giai-tri's top result", () => {
+    const ranked = rankCards("giai-tri", cards, { spendTier: "m10_30" });
+    expect(
+      ranked[0].conditions.some((c) => c.includes("chọn nhóm") || c.includes("Mâm") || c.includes("linh hoạt")),
+    ).toBe(true);
   });
 });
