@@ -34,3 +34,7 @@ main { max-width: 560px; margin: 0 auto; padding: 16px; }
 .pick-group { margin:6px 0 0 22px; } .pick-chips { display:flex; flex-wrap:wrap; gap:6px; }
 .chip { padding:4px 10px; border-radius:999px; border:1px solid #2a2f3a; background:var(--card); color:var(--fg); font-size:12px; }
 .chip.on { border-color:var(--accent); color:var(--accent); }
+.account-bar { display:flex; gap:8px; align-items:center; font-size:13px; margin:8px 0; flex-wrap:wrap; }
+.account-bar button { background:var(--card); border:1px solid #2a2f3a; color:var(--fg); border-radius:8px; padding:6px 10px; }
+.amount-input { display:flex; flex-direction:column; gap:4px; font-size:13px; color:var(--muted); margin:10px 0; }
+.amount-input input { padding:10px; border-radius:8px; background:var(--card); color:var(--fg); border:1px solid #2a2f3a; font-size:15px; }
