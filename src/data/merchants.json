@@ -1,35 +1,666 @@
 [
-  { "name": "Shopee", "aliases": ["shopee"], "mcc": "5399", "category": "mua-sam-online" },
-  { "name": "ShopeeFood", "aliases": ["shopeefood", "shopee food"], "mcc": "5814", "category": "an-uong" },
-  { "name": "Lazada", "aliases": ["lazada"], "mcc": "5399", "category": "mua-sam-online" },
-  { "name": "Tiki", "aliases": ["tiki"], "mcc": "5399", "category": "mua-sam-online" },
-  { "name": "GrabFood", "aliases": ["grabfood", "grab food"], "mcc": "5814", "category": "an-uong" },
-  { "name": "Grab", "aliases": ["grab"], "mcc": "4121", "category": "khac", "note": "di chuyển" },
-  { "name": "Be", "aliases": ["be"], "mcc": "4121", "category": "khac", "note": "di chuyển" },
-  { "name": "Circle K", "aliases": ["circle k", "circlek"], "mcc": "5499", "category": "tien-loi" },
-  { "name": "GS25", "aliases": ["gs25"], "mcc": "5499", "category": "tien-loi" },
-  { "name": "Ministop", "aliases": ["ministop"], "mcc": "5499", "category": "tien-loi" },
-  { "name": "WinMart", "aliases": ["winmart", "vinmart"], "mcc": "5411", "category": "sieu-thi" },
-  { "name": "Bách Hoá Xanh", "aliases": ["bach hoa xanh", "bhx"], "mcc": "5411", "category": "sieu-thi" },
-  { "name": "Co.opmart", "aliases": ["coopmart", "co.opmart", "coop"], "mcc": "5411", "category": "sieu-thi" },
-  { "name": "Highlands Coffee", "aliases": ["highlands", "highlands coffee"], "mcc": "5814", "category": "an-uong" },
-  { "name": "Starbucks", "aliases": ["starbucks"], "mcc": "5814", "category": "an-uong" },
-  { "name": "CGV", "aliases": ["cgv"], "mcc": "7832", "category": "giai-tri" },
-  { "name": "Galaxy Cinema", "aliases": ["galaxy", "galaxy cinema"], "mcc": "7832", "category": "giai-tri" },
-  { "name": "Vietjet", "aliases": ["vietjet"], "mcc": "3245", "category": "du-lich" },
-  { "name": "Vietnam Airlines", "aliases": ["vietnam airlines", "vna"], "mcc": "3000", "category": "du-lich" },
-  { "name": "Booking.com", "aliases": ["booking", "booking.com"], "mcc": "7011", "category": "du-lich" },
-  { "name": "Bảo Việt", "aliases": ["bao viet", "baoviet"], "mcc": "6300", "category": "bao-hiem" },
-  { "name": "Uniqlo", "aliases": ["uniqlo"], "mcc": "5651", "category": "thoi-trang" },
-  { "name": "Petrolimex", "aliases": ["petrolimex", "xang"], "mcc": "5541", "category": "xang-dau" },
-  { "name": "TikTok Shop", "aliases": ["tiktok", "tiktokshop"], "mcc": "5311", "category": "mua-sam-online" },
-  { "name": "Pharmacity", "aliases": ["pharmacity"], "mcc": "5912", "category": "suc-khoe-giao-duc" },
-  { "name": "Long Châu", "aliases": ["fpt long chau", "longchau"], "mcc": "5912", "category": "suc-khoe-giao-duc" },
-  { "name": "Aeon Mall", "aliases": ["aeon", "aeonmall"], "mcc": "5311", "category": "mua-sam-offline" },
-  { "name": "KFC", "aliases": ["kfc vietnam"], "mcc": "5814", "category": "an-uong" },
-  { "name": "Lotteria", "aliases": ["lotteria"], "mcc": "5814", "category": "an-uong" },
-  { "name": "Agoda", "aliases": ["agoda"], "mcc": "4722", "category": "du-lich" },
-  { "name": "Traveloka", "aliases": ["traveloka"], "mcc": "4722", "category": "du-lich" },
-  { "name": "H&M", "aliases": ["h&m"], "mcc": "5651", "category": "thoi-trang" },
-  { "name": "Pizza Hut", "aliases": ["pizza hut"], "mcc": "5812", "category": "an-uong" }
+  {
+    "name": "Shopee",
+    "aliases": [
+      "shopee"
+    ],
+    "mcc": "5399",
+    "category": "mua-sam-online"
+  },
+  {
+    "name": "ShopeeFood",
+    "aliases": [
+      "shopeefood",
+      "shopee food"
+    ],
+    "mcc": "5814",
+    "category": "an-uong"
+  },
+  {
+    "name": "Lazada",
+    "aliases": [
+      "lazada"
+    ],
+    "mcc": "5399",
+    "category": "mua-sam-online"
+  },
+  {
+    "name": "Tiki",
+    "aliases": [
+      "tiki"
+    ],
+    "mcc": "5399",
+    "category": "mua-sam-online"
+  },
+  {
+    "name": "GrabFood",
+    "aliases": [
+      "grabfood",
+      "grab food"
+    ],
+    "mcc": "5814",
+    "category": "an-uong"
+  },
+  {
+    "name": "Grab",
+    "aliases": [
+      "grab"
+    ],
+    "mcc": "4121",
+    "category": "khac",
+    "note": "di chuyển"
+  },
+  {
+    "name": "Be",
+    "aliases": [
+      "be"
+    ],
+    "mcc": "4121",
+    "category": "khac",
+    "note": "di chuyển"
+  },
+  {
+    "name": "Circle K",
+    "aliases": [
+      "circle k",
+      "circlek"
+    ],
+    "mcc": "5499",
+    "category": "tien-loi"
+  },
+  {
+    "name": "GS25",
+    "aliases": [
+      "gs25"
+    ],
+    "mcc": "5499",
+    "category": "tien-loi"
+  },
+  {
+    "name": "Ministop",
+    "aliases": [
+      "ministop"
+    ],
+    "mcc": "5499",
+    "category": "tien-loi"
+  },
+  {
+    "name": "WinMart",
+    "aliases": [
+      "winmart",
+      "vinmart"
+    ],
+    "mcc": "5411",
+    "category": "sieu-thi"
+  },
+  {
+    "name": "Bách Hoá Xanh",
+    "aliases": [
+      "bach hoa xanh",
+      "bhx"
+    ],
+    "mcc": "5411",
+    "category": "sieu-thi"
+  },
+  {
+    "name": "Co.opmart",
+    "aliases": [
+      "coopmart",
+      "co.opmart",
+      "coop"
+    ],
+    "mcc": "5411",
+    "category": "sieu-thi"
+  },
+  {
+    "name": "Highlands Coffee",
+    "aliases": [
+      "highlands",
+      "highlands coffee"
+    ],
+    "mcc": "5814",
+    "category": "an-uong"
+  },
+  {
+    "name": "Starbucks",
+    "aliases": [
+      "starbucks"
+    ],
+    "mcc": "5814",
+    "category": "an-uong"
+  },
+  {
+    "name": "CGV",
+    "aliases": [
+      "cgv"
+    ],
+    "mcc": "7832",
+    "category": "giai-tri"
+  },
+  {
+    "name": "Galaxy Cinema",
+    "aliases": [
+      "galaxy",
+      "galaxy cinema"
+    ],
+    "mcc": "7832",
+    "category": "giai-tri"
+  },
+  {
+    "name": "Vietjet",
+    "aliases": [
+      "vietjet"
+    ],
+    "mcc": "3245",
+    "category": "du-lich"
+  },
+  {
+    "name": "Vietnam Airlines",
+    "aliases": [
+      "vietnam airlines",
+      "vna"
+    ],
+    "mcc": "3000",
+    "category": "du-lich"
+  },
+  {
+    "name": "Booking.com",
+    "aliases": [
+      "booking",
+      "booking.com"
+    ],
+    "mcc": "7011",
+    "category": "du-lich"
+  },
+  {
+    "name": "Bảo Việt",
+    "aliases": [
+      "bao viet",
+      "baoviet"
+    ],
+    "mcc": "6300",
+    "category": "bao-hiem"
+  },
+  {
+    "name": "Uniqlo",
+    "aliases": [
+      "uniqlo"
+    ],
+    "mcc": "5651",
+    "category": "thoi-trang"
+  },
+  {
+    "name": "Petrolimex",
+    "aliases": [
+      "petrolimex",
+      "xang"
+    ],
+    "mcc": "5541",
+    "category": "xang-dau"
+  },
+  {
+    "name": "TikTok Shop",
+    "aliases": [
+      "tiktok",
+      "tiktokshop"
+    ],
+    "mcc": "5311",
+    "category": "mua-sam-online"
+  },
+  {
+    "name": "Pharmacity",
+    "aliases": [
+      "pharmacity"
+    ],
+    "mcc": "5912",
+    "category": "suc-khoe-giao-duc"
+  },
+  {
+    "name": "Long Châu",
+    "aliases": [
+      "fpt long chau",
+      "longchau"
+    ],
+    "mcc": "5912",
+    "category": "suc-khoe-giao-duc"
+  },
+  {
+    "name": "Aeon Mall",
+    "aliases": [
+      "aeon",
+      "aeonmall"
+    ],
+    "mcc": "5311",
+    "category": "mua-sam-offline"
+  },
+  {
+    "name": "KFC",
+    "aliases": [
+      "kfc vietnam"
+    ],
+    "mcc": "5814",
+    "category": "an-uong"
+  },
+  {
+    "name": "Lotteria",
+    "aliases": [
+      "lotteria"
+    ],
+    "mcc": "5814",
+    "category": "an-uong"
+  },
+  {
+    "name": "Agoda",
+    "aliases": [
+      "agoda"
+    ],
+    "mcc": "4722",
+    "category": "du-lich"
+  },
+  {
+    "name": "Traveloka",
+    "aliases": [
+      "traveloka"
+    ],
+    "mcc": "4722",
+    "category": "du-lich"
+  },
+  {
+    "name": "H&M",
+    "aliases": [
+      "h&m"
+    ],
+    "mcc": "5651",
+    "category": "thoi-trang"
+  },
+  {
+    "name": "Pizza Hut",
+    "aliases": [
+      "pizza hut"
+    ],
+    "mcc": "5812",
+    "category": "an-uong"
+  },
+  {
+    "name": "Sendo",
+    "aliases": [
+      "sendo"
+    ],
+    "mcc": "5311",
+    "category": "mua-sam-online"
+  },
+  {
+    "name": "FamilyMart",
+    "aliases": [
+      "familymart",
+      "family mart"
+    ],
+    "mcc": "5411",
+    "category": "tien-loi"
+  },
+  {
+    "name": "Emart",
+    "aliases": [
+      "emart"
+    ],
+    "mcc": "5499",
+    "category": "sieu-thi"
+  },
+  {
+    "name": "MM Mega Market",
+    "aliases": [
+      "mega market",
+      "mm mega"
+    ],
+    "mcc": "5411",
+    "category": "sieu-thi"
+  },
+  {
+    "name": "Lotte Mart",
+    "aliases": [
+      "lotte mart",
+      "lottemart"
+    ],
+    "mcc": "5411",
+    "category": "sieu-thi"
+  },
+  {
+    "name": "Big C",
+    "aliases": [
+      "big c",
+      "go!"
+    ],
+    "mcc": "5411",
+    "category": "sieu-thi"
+  },
+  {
+    "name": "Satra",
+    "aliases": [
+      "satra",
+      "satrafoods"
+    ],
+    "mcc": "5411",
+    "category": "tien-loi"
+  },
+  {
+    "name": "Kingfoodmart",
+    "aliases": [
+      "kingfoodmart"
+    ],
+    "mcc": "5499",
+    "category": "sieu-thi"
+  },
+  {
+    "name": "The Coffee House",
+    "aliases": [
+      "coffee house",
+      "tch"
+    ],
+    "mcc": "5814",
+    "category": "an-uong"
+  },
+  {
+    "name": "Phúc Long",
+    "aliases": [
+      "phuc long",
+      "phuclong"
+    ],
+    "mcc": "5814",
+    "category": "an-uong"
+  },
+  {
+    "name": "Trung Nguyên",
+    "aliases": [
+      "trung nguyen"
+    ],
+    "mcc": "5813",
+    "category": "an-uong"
+  },
+  {
+    "name": "Gong Cha",
+    "aliases": [
+      "gong cha"
+    ],
+    "mcc": "5813",
+    "category": "an-uong"
+  },
+  {
+    "name": "Katinat",
+    "aliases": [
+      "katinat"
+    ],
+    "mcc": "5814",
+    "category": "an-uong"
+  },
+  {
+    "name": "Jollibee",
+    "aliases": [
+      "jollibee"
+    ],
+    "mcc": "5814",
+    "category": "an-uong"
+  },
+  {
+    "name": "McDonald's",
+    "aliases": [
+      "mcdonald",
+      "mcdonalds"
+    ],
+    "mcc": "5814",
+    "category": "an-uong"
+  },
+  {
+    "name": "Burger King",
+    "aliases": [
+      "burger king"
+    ],
+    "mcc": "5814",
+    "category": "an-uong"
+  },
+  {
+    "name": "Gojek",
+    "aliases": [
+      "gojek"
+    ],
+    "mcc": "4121",
+    "category": "khac"
+  },
+  {
+    "name": "Xanh SM",
+    "aliases": [
+      "xanh sm",
+      "gsm"
+    ],
+    "mcc": "4121",
+    "category": "khac"
+  },
+  {
+    "name": "Mai Linh",
+    "aliases": [
+      "mai linh"
+    ],
+    "mcc": "4121",
+    "category": "khac"
+  },
+  {
+    "name": "Guardian",
+    "aliases": [
+      "guardian"
+    ],
+    "mcc": "5331",
+    "category": "khac"
+  },
+  {
+    "name": "Watsons",
+    "aliases": [
+      "watsons"
+    ],
+    "mcc": "5411",
+    "category": "khac"
+  },
+  {
+    "name": "Hasaki",
+    "aliases": [
+      "hasaki"
+    ],
+    "mcc": "7298",
+    "category": "khac"
+  },
+  {
+    "name": "FPT Shop",
+    "aliases": [
+      "fpt shop",
+      "fptshop"
+    ],
+    "mcc": "5732",
+    "category": "mua-sam-offline"
+  },
+  {
+    "name": "Thế Giới Di Động",
+    "aliases": [
+      "the gioi di dong",
+      "tgdd"
+    ],
+    "mcc": "5732",
+    "category": "mua-sam-offline"
+  },
+  {
+    "name": "Điện Máy Xanh",
+    "aliases": [
+      "dien may xanh",
+      "dmx"
+    ],
+    "mcc": "5732",
+    "category": "mua-sam-offline"
+  },
+  {
+    "name": "CellphoneS",
+    "aliases": [
+      "cellphones"
+    ],
+    "mcc": "5732",
+    "category": "mua-sam-offline"
+  },
+  {
+    "name": "Nguyễn Kim",
+    "aliases": [
+      "nguyen kim"
+    ],
+    "mcc": "5732",
+    "category": "mua-sam-offline"
+  },
+  {
+    "name": "Zara",
+    "aliases": [
+      "zara"
+    ],
+    "mcc": "5691",
+    "category": "thoi-trang"
+  },
+  {
+    "name": "Nike",
+    "aliases": [
+      "nike"
+    ],
+    "mcc": "5691",
+    "category": "thoi-trang"
+  },
+  {
+    "name": "Adidas",
+    "aliases": [
+      "adidas"
+    ],
+    "mcc": "5941",
+    "category": "thoi-trang"
+  },
+  {
+    "name": "Routine",
+    "aliases": [
+      "routine"
+    ],
+    "mcc": "5691",
+    "category": "thoi-trang"
+  },
+  {
+    "name": "Canifa",
+    "aliases": [
+      "canifa"
+    ],
+    "mcc": "5691",
+    "category": "thoi-trang"
+  },
+  {
+    "name": "Aeon",
+    "aliases": [
+      "aeon",
+      "aeon mall"
+    ],
+    "mcc": "5411",
+    "category": "mua-sam-offline"
+  },
+  {
+    "name": "Lotte Cinema",
+    "aliases": [
+      "lotte cinema"
+    ],
+    "mcc": "7832",
+    "category": "giai-tri"
+  },
+  {
+    "name": "Netflix",
+    "aliases": [
+      "netflix"
+    ],
+    "mcc": "4899",
+    "category": "giai-tri"
+  },
+  {
+    "name": "Spotify",
+    "aliases": [
+      "spotify"
+    ],
+    "mcc": "5818",
+    "category": "giai-tri"
+  },
+  {
+    "name": "Bamboo Airways",
+    "aliases": [
+      "bamboo airways",
+      "bamboo"
+    ],
+    "mcc": "4511",
+    "category": "du-lich"
+  },
+  {
+    "name": "Vietravel",
+    "aliases": [
+      "vietravel"
+    ],
+    "mcc": "4722",
+    "category": "du-lich"
+  },
+  {
+    "name": "Vinpearl",
+    "aliases": [
+      "vinpearl"
+    ],
+    "mcc": "7011",
+    "category": "du-lich"
+  },
+  {
+    "name": "PVOIL",
+    "aliases": [
+      "pvoil"
+    ],
+    "mcc": "5541",
+    "category": "xang-dau"
+  },
+  {
+    "name": "Prudential",
+    "aliases": [
+      "prudential"
+    ],
+    "mcc": "6300",
+    "category": "bao-hiem"
+  },
+  {
+    "name": "Manulife",
+    "aliases": [
+      "manulife"
+    ],
+    "mcc": "6300",
+    "category": "bao-hiem"
+  },
+  {
+    "name": "FWD",
+    "aliases": [
+      "fwd"
+    ],
+    "mcc": "6300",
+    "category": "bao-hiem"
+  },
+  {
+    "name": "VNPAY",
+    "aliases": [
+      "vnpay"
+    ],
+    "mcc": "5411",
+    "category": "khac"
+  },
+  {
+    "name": "MoMo",
+    "aliases": [
+      "momo"
+    ],
+    "mcc": "5969",
+    "category": "khac"
+  },
+  {
+    "name": "ZaloPay",
+    "aliases": [
+      "zalopay"
+    ],
+    "mcc": "5969",
+    "category": "khac"
+  }
 ]
