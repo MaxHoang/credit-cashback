@@ -5,7 +5,22 @@ import { ConfidenceBadge } from "./ConfidenceBadge";
 import { Disclaimer } from "./Disclaimer";
 
 export function CardDetail({ card, onBack }: { card: Card; onBack: () => void }) {
-  const rateFor = (catId: string) => card.rates.find((r) => r.category === catId);
+  const rateCellFor = (catId: string, excluded: boolean, defaultRate: number) => {
+    if (excluded) return "Không áp dụng";
+    const rows = card.rates.filter((r) => r.category === catId);
+    if (card.scheme === "spend-tier" && rows.length) {
+      const rates = rows.map((r) => r.rate);
+      const caps = rows.map((r) => r.cap_monthly).filter((c): c is number => c != null);
+      const min = Math.min(...rates), max = Math.max(...rates);
+      const rateText = min === max ? formatPct(min) : `${formatPct(min)} – ${formatPct(max)}`;
+      if (!caps.length) return `${rateText} (theo mức chi tiêu/tháng)`;
+      const capMin = Math.min(...caps), capMax = Math.max(...caps);
+      const capText = capMin === capMax ? formatVnd(capMin) : `${formatVnd(capMin)}–${formatVnd(capMax)}`;
+      return `${rateText} (cap ${capText}, theo chi tiêu/tháng)`;
+    }
+    const r = rows[0];
+    return formatPct(r ? r.rate : defaultRate);
+  };
   return (
     <section className="card-detail">
       <button className="back" onClick={onBack}>← Quay lại</button>
@@ -22,13 +37,11 @@ export function CardDetail({ card, onBack }: { card: Card; onBack: () => void })
       <table className="rate-table">
         <tbody>
           {CATEGORIES.map((cat) => {
-            const r = rateFor(cat.id);
             const excluded = card.excluded_categories.includes(cat.id);
-            const rate = excluded ? 0 : r ? r.rate : card.default_rate;
             return (
               <tr key={cat.id}>
                 <td>{cat.icon} {cat.label}</td>
-                <td>{excluded ? "Không áp dụng" : formatPct(rate)}</td>
+                <td>{rateCellFor(cat.id, excluded, card.default_rate)}</td>
               </tr>
             );
           })}

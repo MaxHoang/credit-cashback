@@ -5,13 +5,12 @@ import type { Profile } from "./types";
 export const PB_URL = import.meta.env.VITE_PB_URL ?? "http://localhost:8090";
 export const pb = new PocketBase(PB_URL);
 
-export const DEFAULT_PROFILE: Profile = { owned_cards: [], picks: {}, default_spend_tier: "m10_30" };
+export const DEFAULT_PROFILE: Profile = { owned_cards: [], picks: {} };
 
 export function profileFromRecord(rec: Record<string, unknown>): Profile {
   return {
     owned_cards: Array.isArray(rec.owned_cards) ? (rec.owned_cards as string[]) : [],
     picks: (rec.picks && typeof rec.picks === "object" ? rec.picks : {}) as Profile["picks"],
-    default_spend_tier: (typeof rec.default_spend_tier === "string" && rec.default_spend_tier ? rec.default_spend_tier : "m10_30") as Profile["default_spend_tier"],
   };
 }
 

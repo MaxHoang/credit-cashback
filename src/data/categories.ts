@@ -1,4 +1,4 @@
-import type { Category, SpendTierId } from "../lib/types";
+import type { Category } from "../lib/types";
 
 export const CATEGORIES: Category[] = [
   { id: "an-uong", label: "Ăn uống / Nhà hàng", icon: "🍜" },
@@ -17,4 +17,3 @@ export const CATEGORIES: Category[] = [
 ];
 
 export const CATEGORY_IDS = new Set(CATEGORIES.map((c) => c.id));
-export const DEFAULT_TIER: SpendTierId = "m10_30";

@@ -1,8 +1,8 @@
-import type { Card, Confidence, RankedCard, Rate, SpendTierId, UserPicks } from "./types";
+import type { Card, Confidence, RankedCard, Rate, UserPicks } from "./types";
 import { formatVnd } from "./format";
 
 interface Opts {
-  spendTier: SpendTierId; merchant?: string; userPicks?: UserPicks; amount?: number;
+  merchant?: string; userPicks?: UserPicks; amount?: number;
   onlyOwned?: boolean; ownedCards?: string[];
 }
 interface EffResult {
@@ -35,9 +35,11 @@ export function effectiveRate(card: Card, categoryId: string, opts: Opts): EffRe
   }
 
   let candidates: Rate[] = card.rates.filter((r) => r.category === categoryId);
-  if (card.scheme === "spend-tier") {
-    const tiered = candidates.filter((r) => r.tier === opts.spendTier);
-    candidates = tiered.length ? tiered : candidates.filter((r) => !r.tier);
+  if (card.scheme === "spend-tier" && candidates.length) {
+    candidates = [...candidates].sort(
+      (a, b) => (b.rate - a.rate) || ((a.cap_monthly ?? Infinity) - (b.cap_monthly ?? Infinity))
+    );
+    candidates = [candidates[0]];
   }
 
   let chosen: Rate | undefined = candidates[0];
@@ -61,6 +63,7 @@ export function effectiveRate(card: Card, categoryId: string, opts: Opts): EffRe
   if (card.min_monthly_spend > 0) conditions.push(`Cần chi tối thiểu ${formatVnd(card.min_monthly_spend)}/tháng`);
   if (capMonthly) conditions.push(`Cap ${formatVnd(capMonthly)}/tháng`);
   if (chosen?.group && !opts.userPicks && PICK_CONDITION[chosen.group]) conditions.push(PICK_CONDITION[chosen.group]);
+  if (card.scheme === "spend-tier" && chosen) conditions.push("Tỷ lệ/cap theo mức chi tiêu hàng tháng trên thẻ này (đang hiện mức tốt nhất)");
   if (card.reward_type === "points") conditions.push("Ước tính từ điểm thưởng (1 điểm = 1 VND)");
   if (card.reward_type === "miles") conditions.push("Ước tính từ dặm thưởng");
   if (chosen?.note) conditions.push(chosen.note);

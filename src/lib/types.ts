@@ -5,7 +5,6 @@ export type Scheme = "flat" | "pick-n" | "spend-tier";
 export type SpendTierId = "lt10" | "m10_30" | "m30_100" | "gte100";
 
 export interface Category { id: CategoryId; label: string; icon: string; }
-export interface SpendTier { id: SpendTierId; label: string; }
 
 export interface Rate {
   category: CategoryId;
@@ -49,7 +48,7 @@ export interface RankedCard {
 }
 
 export interface UserPicks { [cardId: string]: { [group: string]: string | string[] }; }
-export interface Profile { owned_cards: string[]; picks: UserPicks; default_spend_tier: SpendTierId; }
+export interface Profile { owned_cards: string[]; picks: UserPicks; }
 
 export interface Suggestion { kind: "merchant" | "category"; label: string; categoryId: CategoryId; }
 export interface ResolveResult {

@@ -1,11 +1,10 @@
 import { useState } from "react";
-import type { Card, Profile, ResolveResult, SpendTierId } from "./lib/types";
+import type { Card, Profile, ResolveResult } from "./lib/types";
 import cardsData from "./data/cards.json";
-import { CATEGORIES, DEFAULT_TIER } from "./data/categories";
+import { CATEGORIES } from "./data/categories";
 import { rankCards } from "./lib/ranking";
 import { SearchBar } from "./components/SearchBar";
 import { CategoryGrid } from "./components/CategoryGrid";
-import { SpendTierSelect } from "./components/SpendTierSelect";
 import { CardList } from "./components/CardList";
 import { CardDetail } from "./components/CardDetail";
 import { Disclaimer } from "./components/Disclaimer";
@@ -24,7 +23,6 @@ type View =
 
 export default function App() {
   const [view, setView] = useState<View>({ name: "home" });
-  const [tier, setTier] = useState<SpendTierId>(DEFAULT_TIER);
   const [profile, setProfile] = useState<Profile>(loadProfile());
   const [authTick, setAuthTick] = useState(0);
   const [amount, setAmount] = useState("");
@@ -60,7 +58,6 @@ export default function App() {
       {view.name === "home" && (
         <>
           <SearchBar onResolve={onResolve} />
-          <SpendTierSelect value={tier} onChange={setTier} />
           <CategoryGrid onPick={(categoryId) => setView({ name: "category", categoryId })} />
           <button className="link" onClick={() => setView({ name: "all" })}>Xem tất cả thẻ →</button>
         </>
@@ -70,7 +67,6 @@ export default function App() {
         const cat = CATEGORIES.find((c) => c.id === view.categoryId)!;
         const loggedIn = isLoggedIn();
         const ranked = rankCards(view.categoryId, cards, {
-          spendTier: tier,
           merchant: view.merchant,
           userPicks: loggedIn ? profile.picks : undefined,
           amount: amount ? Number(amount) : undefined,
@@ -82,7 +78,6 @@ export default function App() {
             <button className="back" onClick={() => setView({ name: "home" })}>← Trang chủ</button>
             {view.merchant && <p className="muted">{view.merchant} → MCC {view.mcc}</p>}
             <h2>{cat.icon} {cat.label}</h2>
-            <SpendTierSelect value={tier} onChange={setTier} />
             <AmountInput value={amount} onChange={setAmount} />
             {loggedIn && (
               <label className="only-owned">

@@ -1,6 +1,5 @@
 import type { Card, Profile } from "../lib/types";
 import cardsData from "../data/cards.json";
-import { SPEND_TIERS } from "../data/spendTiers";
 import { CATEGORIES } from "../data/categories";
 
 const cards = cardsData as Card[];
@@ -36,12 +35,6 @@ export function MyCards({ profile, onChange }: { profile: Profile; onChange: (p:
     <section className="my-cards">
       <button className="back" onClick={() => onChange(profile)}>← Xong</button>
       <h2>Thẻ của tôi</h2>
-      <label className="tier-select">
-        <span>Mức chi tiêu/tháng của tôi</span>
-        <select value={profile.default_spend_tier} onChange={(e) => onChange({ ...profile, default_spend_tier: e.target.value as Profile["default_spend_tier"] })}>
-          {SPEND_TIERS.map((t) => <option key={t.id} value={t.id}>{t.label}</option>)}
-        </select>
-      </label>
       <ul className="own-list">
         {cards.map((c) => {
           const isOwned = owned.has(c.id);
