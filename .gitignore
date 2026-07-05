@@ -17,3 +17,8 @@ dist-ssr/
 # PocketBase runtime
 backend/pb_data/
 backend/pocketbase
+backend/pb_data*
+backend/*.log
+backend/pb.zip
+backend/CHANGELOG.md
+backend/LICENSE.md

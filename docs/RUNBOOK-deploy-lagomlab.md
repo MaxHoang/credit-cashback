@@ -26,3 +26,19 @@ Backend = PocketBase (single binary + SQLite). Domain: **card.lagomlab.tech** (C
 ## 5. Verify
 - `curl -sf https://card.lagomlab.tech/api/health` → 200.
 - Log in with Google from the app → set "Thẻ của tôi" → confirm ranking personalizes; confirm a second account cannot read the first's record (owner-only rule).
+
+## 6. Merchant dataset (53k VN merchants → MCC → category)
+- `backend/data/merchants.jsonl` — **53,097** VN merchants `{name, mcc, category, method}` crawled from
+  rcgv.vn/check-mcc (56,572 raw → deduped), mapped from rcgv's 23 categories to the app's 13. `name` is the
+  raw statement descriptor (good for matching bank-statement text).
+- Migration `backend/pb_migrations/1720300000_merchants_collection.js` creates a **public-read `merchants`**
+  collection (indexes on name + mcc). Auto-applies on PocketBase start.
+- **One-time import** (after PB up + superuser created):
+  `PB_URL=https://card.lagomlab.tech PB_ADMIN_EMAIL=... PB_ADMIN_PASSWORD=... node backend/import-merchants.mjs`
+  (~53k sequential creates → several minutes; `IMPORT_LIMIT=N` for a partial run).
+- **Frontend (production) usage (follow-up wiring):** resolve any merchant via
+  `GET /api/collections/merchants/records?perPage=5&filter=name~'<q>'` → use the returned `category` for ranking.
+  The bundled curated `src/data/merchants.json` (79, with online/convenience overrides) stays as the accurate
+  fast-path / offline fallback; the backend collection is the long-tail.
+- **Verified on dev VPS:** migration applies; `import-merchants.mjs` imported a 500-row subset (500/500 ok);
+  public search endpoint returns records. Full 53k import runs identically on prod.
