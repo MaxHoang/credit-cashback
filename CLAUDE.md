@@ -20,11 +20,9 @@ Cake Freedom · VPBank StepUp · TCB Spark · TCB Everyday · MB JCB Ultimate ·
 - Deploy: push main → GitHub Actions → Pages (bật Pages: Settings → Pages → GitHub Actions).
 - Sửa số liệu: `src/data/cards.json` / `src/data/merchants.json`.
 
-## Status
-- Phase: Design. Spec: `docs/superpowers/specs/`.
-
-## v2 (accounts + amount-aware) — built on dev, awaiting lagomlab deploy
-- Backend: PocketBase (`backend/`, SQLite). Frontend integrates via `src/lib/pb.ts` (`VITE_PB_URL`).
-- Personalized + amount-aware ranking live in `src/lib/ranking.ts`. Logged-out = v1 behavior.
-- Deploy to `card.lagomlab.tech`: see `docs/RUNBOOK-deploy-lagomlab.md` (lagomlab Claude, after Quân approves dev test).
-- Needs: Google OAuth client (redirect `https://card.lagomlab.tech/api/oauth2-redirect`), `VITE_PB_URL` prod env.
+## Status — v2 built + tested on dev, DEPLOY-READY for lagomlab
+- Frontend (Pages): v1 features + accounts (Google SSO) + amount-aware ranking + spend-tier-as-info + 79 curated merchants. Logged-out = v1 behavior.
+- Backend (`backend/`, PocketBase+SQLite → `card.lagomlab.tech`): profile fields + owner-only rules + public-read `merchants` collection (53k VN merchants from rcgv). Frontend integrates via `src/lib/pb.ts` (`VITE_PB_URL`).
+- **Deploy:** full self-contained sequence in `docs/RUNBOOK-deploy-lagomlab.md` (lagomlab Claude).
+- **Needs from Quân:** Google OAuth client (redirect `https://card.lagomlab.tech/api/oauth2-redirect`); set repo variable `VITE_PB_URL=https://card.lagomlab.tech`.
+- Follow-up (post-deploy): wire frontend merchant search → backend `merchants` collection for long-tail.
