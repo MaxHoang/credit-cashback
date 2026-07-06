@@ -54,7 +54,10 @@ export function currentUser() { return pb.authStore.record; }
 export async function saveProfile(p: Profile): Promise<void> {
   const id = pb.authStore.record?.id;
   if (!id) throw new Error("not logged in");
-  await pb.collection("users").update(id, p);
+  const rec = await pb.collection("users").update(id, p);
+  // Refresh the local auth record so the saved picks survive a page reload
+  // (authStore is persisted to localStorage; loadProfile reads it back).
+  pb.authStore.save(pb.authStore.token, rec as unknown as Parameters<typeof pb.authStore.save>[1]);
 }
 
 export function loadProfile(): Profile {

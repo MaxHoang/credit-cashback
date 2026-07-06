@@ -37,11 +37,14 @@ export default function App() {
   if (showSettings) {
     return (
       <main key={authTick}>
-        <MyCards profile={profile} onChange={(p) => {
-          setProfile(p);
-          if (isLoggedIn()) saveProfile(p).catch(() => {});
-          setShowSettings(false);
-        }} />
+        <MyCards
+          profile={profile}
+          onChange={(p) => {
+            setProfile(p);
+            if (isLoggedIn()) saveProfile(p).catch(() => {});
+          }}
+          onDone={() => setShowSettings(false)}
+        />
       </main>
     );
   }

@@ -13,7 +13,7 @@ const PICK_GROUPS: Record<string, { group: string; label: string; count: number 
 };
 const catLabel = (id: string) => CATEGORIES.find((c) => c.id === id)?.label ?? id;
 
-export function MyCards({ profile, onChange }: { profile: Profile; onChange: (p: Profile) => void }) {
+export function MyCards({ profile, onChange, onDone }: { profile: Profile; onChange: (p: Profile) => void; onDone: () => void }) {
   const owned = new Set(profile.owned_cards);
 
   function toggleOwned(id: string) {
@@ -33,7 +33,7 @@ export function MyCards({ profile, onChange }: { profile: Profile; onChange: (p:
 
   return (
     <section className="my-cards">
-      <button className="back" onClick={() => onChange(profile)}>← Xong</button>
+      <button className="back" onClick={onDone}>← Xong</button>
       <h2>Thẻ của tôi</h2>
       <ul className="own-list">
         {cards.map((c) => {
