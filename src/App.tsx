@@ -68,6 +68,7 @@ export default function App() {
         const loggedIn = isLoggedIn();
         const ranked = rankCards(view.categoryId, cards, {
           merchant: view.merchant,
+          mcc: view.mcc,
           userPicks: loggedIn ? profile.picks : undefined,
           amount: amount ? Number(amount) : undefined,
           onlyOwned,

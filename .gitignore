@@ -22,3 +22,7 @@ backend/*.log
 backend/pb.zip
 backend/CHANGELOG.md
 backend/LICENSE.md
+
+# deploy-local port override
+backend/docker-compose.override.yml
+backend/pb_public/

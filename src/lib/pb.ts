@@ -1,9 +1,37 @@
 /// <reference types="vite/client" />
 import PocketBase from "pocketbase";
-import type { Profile } from "./types";
+import type { Merchant, Profile, Suggestion } from "./types";
+import { CATEGORY_IDS } from "../data/categories";
 
 export const PB_URL = import.meta.env.VITE_PB_URL ?? "http://localhost:8090";
 export const pb = new PocketBase(PB_URL);
+
+// Long-tail merchant lookup against the backend `merchants` collection (53k VN
+// merchants → MCC → category). Used as a fallback when a query isn't in the
+// bundled curated set. Backend down / unreachable → [] (search degrades to the
+// curated data, never throws).
+export function recordToMerchant(rec: Record<string, unknown>): Merchant {
+  const cat = typeof rec.category === "string" && CATEGORY_IDS.has(rec.category) ? rec.category : "khac";
+  return { name: String(rec.name ?? ""), aliases: [], mcc: String(rec.mcc ?? ""), category: cat };
+}
+
+export function merchantsToSuggestions(ms: Merchant[]): Suggestion[] {
+  return ms.map((m) => ({ kind: "merchant", label: m.name, categoryId: m.category }));
+}
+
+export async function searchMerchants(q: string, limit = 6): Promise<Merchant[]> {
+  const term = q.trim();
+  if (term.length < 2) return [];
+  try {
+    const res = await pb.collection("merchants").getList(1, limit, {
+      filter: pb.filter("name ~ {:q}", { q: term }),
+      skipTotal: true,
+    });
+    return res.items.map((r) => recordToMerchant(r as unknown as Record<string, unknown>));
+  } catch {
+    return [];
+  }
+}
 
 export const DEFAULT_PROFILE: Profile = { owned_cards: [], picks: {} };
 

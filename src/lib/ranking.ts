@@ -2,7 +2,7 @@ import type { Card, Confidence, RankedCard, Rate, UserPicks } from "./types";
 import { formatVnd } from "./format";
 
 interface Opts {
-  merchant?: string; userPicks?: UserPicks; amount?: number;
+  merchant?: string; mcc?: string; userPicks?: UserPicks; amount?: number;
   onlyOwned?: boolean; ownedCards?: string[];
 }
 interface EffResult {
@@ -35,6 +35,27 @@ export function effectiveRate(card: Card, categoryId: string, opts: Opts): EffRe
   }
 
   let candidates: Rate[] = card.rates.filter((r) => r.category === categoryId);
+
+  // MCC precision: banks apply category bonuses by the merchant's real MCC, not by our
+  // category bucket. When we know the merchant MCC and a rate documents its qualifying
+  // MCCs (from the card's T&C), keep it only on an MCC match; if none of the documented
+  // bonuses match, the bonus does not apply (fall back to base rate) — honest, not lossy.
+  let mccExcluded = false;
+  if (opts.mcc && candidates.length) {
+    const documented = candidates.filter((r) => r.mccs && r.mccs.length);
+    if (documented.length) {
+      const matched = documented.filter((r) => r.mccs!.includes(opts.mcc!));
+      if (matched.length) {
+        conditions.push(`MCC ${opts.mcc} đúng nhóm ưu đãi ✓`);
+        candidates = matched;
+      } else {
+        const undocumented = candidates.filter((r) => !(r.mccs && r.mccs.length));
+        candidates = undocumented;
+        mccExcluded = undocumented.length === 0;
+      }
+    }
+  }
+
   if (card.scheme === "spend-tier" && candidates.length) {
     candidates = [...candidates].sort(
       (a, b) => (b.rate - a.rate) || ((a.cap_monthly ?? Infinity) - (b.cap_monthly ?? Infinity))
@@ -59,6 +80,8 @@ export function effectiveRate(card: Card, categoryId: string, opts: Opts): EffRe
 
   const rate = chosen ? chosen.rate : card.default_rate;
   const capMonthly = (chosen?.cap_monthly ?? card.monthly_cap_total) ?? null;
+
+  if (mccExcluded) conditions.push(`MCC ${opts.mcc} không thuộc nhóm ưu đãi của thẻ (về mức cơ bản)`);
 
   if (card.min_monthly_spend > 0) conditions.push(`Cần chi tối thiểu ${formatVnd(card.min_monthly_spend)}/tháng`);
   if (capMonthly) conditions.push(`Cap ${formatVnd(capMonthly)}/tháng`);

@@ -16,6 +16,7 @@ export interface Rate {
   tier?: SpendTierId;               // cho spend-tier
   online_only?: boolean;
   excluded_merchants?: string[];
+  mccs?: string[];                  // MCC thực tế đủ điều kiện ưu đãi (từ T&C ngân hàng)
   confidence?: Confidence;
   note?: string;
 }
