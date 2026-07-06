@@ -16,10 +16,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: { node-version: 20, cache: npm }
+        with: { node-version: 22, cache: npm }
       - run: npm ci
       - run: npm test
       - run: npm run build
+        env:
+          # Set repo variable VITE_PB_URL=https://card.lagomlab.tech to point the
+          # production frontend at the PocketBase backend. Empty → localhost fallback
+          # (anonymous features work; login degrades gracefully).
+          VITE_PB_URL: ${{ vars.VITE_PB_URL }}
       - uses: actions/upload-pages-artifact@v3
         with: { path: dist }
   deploy:
