@@ -47,8 +47,8 @@
       "grab"
     ],
     "mcc": "4121",
-    "category": "khac",
-    "note": "di chuyển"
+    "category": "du-lich",
+    "note": "di chuyển / ride-hailing (MCC 4121)"
   },
   {
     "name": "Be",
@@ -56,8 +56,8 @@
       "be"
     ],
     "mcc": "4121",
-    "category": "khac",
-    "note": "di chuyển"
+    "category": "du-lich",
+    "note": "di chuyển / ride-hailing (MCC 4121)"
   },
   {
     "name": "Circle K",
@@ -423,7 +423,8 @@
       "gojek"
     ],
     "mcc": "4121",
-    "category": "khac"
+    "category": "du-lich",
+    "note": "di chuyển / ride-hailing (MCC 4121)"
   },
   {
     "name": "Xanh SM",
@@ -579,7 +580,7 @@
     "aliases": [
       "spotify"
     ],
-    "mcc": "5818",
+    "mcc": "5815",
     "category": "giai-tri"
   },
   {
@@ -662,5 +663,52 @@
     ],
     "mcc": "5969",
     "category": "khac"
+  },
+  {
+    "name": "Apple App Store",
+    "aliases": [
+      "app store",
+      "apple",
+      "itunes",
+      "apple.com/bill"
+    ],
+    "mcc": "5818",
+    "category": "mua-sam-online",
+    "note": "digital goods (MCC 5818) — có thể không thuộc nhóm khuyến mãi online của một số thẻ"
+  },
+  {
+    "name": "Google Play",
+    "aliases": [
+      "google play",
+      "play store",
+      "google *play"
+    ],
+    "mcc": "5818",
+    "category": "mua-sam-online",
+    "note": "digital goods (MCC 5818) — có thể không thuộc nhóm khuyến mãi online của một số thẻ"
+  },
+  {
+    "name": "Google",
+    "aliases": [
+      "google drive",
+      "google one",
+      "google storage",
+      "google *",
+      "google workspace"
+    ],
+    "mcc": "5817",
+    "category": "mua-sam-online",
+    "note": "digital apps/software (MCC 5817)"
+  },
+  {
+    "name": "YouTube Premium",
+    "aliases": [
+      "youtube",
+      "youtube premium",
+      "google *youtube"
+    ],
+    "mcc": "5815",
+    "category": "giai-tri",
+    "note": "digital media (MCC 5815)"
   }
 ]

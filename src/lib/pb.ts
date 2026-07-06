@@ -2,6 +2,7 @@
 import PocketBase from "pocketbase";
 import type { Merchant, Profile, Suggestion } from "./types";
 import { CATEGORY_IDS } from "../data/categories";
+import { mccToCategory } from "../data/mcc";
 
 export const PB_URL = import.meta.env.VITE_PB_URL ?? "http://localhost:8090";
 export const pb = new PocketBase(PB_URL);
@@ -11,8 +12,11 @@ export const pb = new PocketBase(PB_URL);
 // bundled curated set. Backend down / unreachable → [] (search degrades to the
 // curated data, never throws).
 export function recordToMerchant(rec: Record<string, unknown>): Merchant {
-  const cat = typeof rec.category === "string" && CATEGORY_IDS.has(rec.category) ? rec.category : "khac";
-  return { name: String(rec.name ?? ""), aliases: [], mcc: String(rec.mcc ?? ""), category: cat };
+  const mcc = String(rec.mcc ?? "");
+  const stored = typeof rec.category === "string" && CATEGORY_IDS.has(rec.category) ? rec.category : null;
+  // Canonical MCC map (unambiguous) wins; else the backend's stored category; else "khac".
+  const cat = mccToCategory(mcc) ?? stored ?? "khac";
+  return { name: String(rec.name ?? ""), aliases: [], mcc, category: cat };
 }
 
 export function merchantsToSuggestions(ms: Merchant[]): Suggestion[] {

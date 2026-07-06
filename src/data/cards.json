@@ -115,7 +115,8 @@
   ],
   "notes": [
    "Tự động theo bậc chi tiêu/tháng; ≥10tr đạt bậc cao nhất (online 15% cap 1,5tr; ẩm thực 4% cap 200k)",
-   "Loại trừ hoàn tiền: Shopee, thanh toán hoá đơn, và bảo hiểm online MCC 5960/6300 (xác nhận qua thể lệ dài hạn VPBank)"
+   "Loại trừ hoàn tiền: Shopee, thanh toán hoá đơn, và bảo hiểm online MCC 5960/6300 (xác nhận qua thể lệ dài hạn VPBank)",
+   "Digital goods (App Store/Google Play MCC 5817/5818, streaming 4899/5815) thường KHÔNG thuộc nhóm e-commerce khuyến mãi — ngân hàng tính theo MCC thực, không theo tên merchant"
   ],
   "rates": [
    {
@@ -405,7 +406,8 @@
    "Cần chi ≥ 10 triệu/tháng mới có hoàn tiền",
    "Mâm 1 (chọn 1, 10%, cap 400k); Mâm 2 (chọn 2, 2%, cap 400k); tổng 800k",
    "MCC nhóm (tham khảo, review thứ cấp — chưa chốt từ T&C gốc): Siêu thị 5411; Online 5262/5611/5732; Đặt xe 4011/4112/4121",
-   "Sinh nhật x2 tỷ lệ; vị trí nhóm Sức khoẻ/Bảo hiểm chưa chắc"
+   "Sinh nhật x2 tỷ lệ; vị trí nhóm Sức khoẻ/Bảo hiểm chưa chắc",
+   "Digital goods (App Store/Google Play MCC 5817/5818, streaming 4899/5815) thường KHÔNG thuộc nhóm e-commerce khuyến mãi — ngân hàng tính theo MCC thực, không theo tên merchant"
   ],
   "rates": [
    {
