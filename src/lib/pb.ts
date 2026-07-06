@@ -1,9 +1,41 @@
 /// <reference types="vite/client" />
 import PocketBase from "pocketbase";
-import type { Profile } from "./types";
+import type { Merchant, Profile, Suggestion } from "./types";
+import { CATEGORY_IDS } from "../data/categories";
+import { mccToCategory } from "../data/mcc";
 
 export const PB_URL = import.meta.env.VITE_PB_URL ?? "http://localhost:8090";
 export const pb = new PocketBase(PB_URL);
+
+// Long-tail merchant lookup against the backend `merchants` collection (53k VN
+// merchants → MCC → category). Used as a fallback when a query isn't in the
+// bundled curated set. Backend down / unreachable → [] (search degrades to the
+// curated data, never throws).
+export function recordToMerchant(rec: Record<string, unknown>): Merchant {
+  const mcc = String(rec.mcc ?? "");
+  const stored = typeof rec.category === "string" && CATEGORY_IDS.has(rec.category) ? rec.category : null;
+  // Canonical MCC map (unambiguous) wins; else the backend's stored category; else "khac".
+  const cat = mccToCategory(mcc) ?? stored ?? "khac";
+  return { name: String(rec.name ?? ""), aliases: [], mcc, category: cat };
+}
+
+export function merchantsToSuggestions(ms: Merchant[]): Suggestion[] {
+  return ms.map((m) => ({ kind: "merchant", label: m.name, categoryId: m.category }));
+}
+
+export async function searchMerchants(q: string, limit = 6): Promise<Merchant[]> {
+  const term = q.trim();
+  if (term.length < 2) return [];
+  try {
+    const res = await pb.collection("merchants").getList(1, limit, {
+      filter: pb.filter("name ~ {:q}", { q: term }),
+      skipTotal: true,
+    });
+    return res.items.map((r) => recordToMerchant(r as unknown as Record<string, unknown>));
+  } catch {
+    return [];
+  }
+}
 
 export const DEFAULT_PROFILE: Profile = { owned_cards: [], picks: {} };
 
@@ -26,7 +58,10 @@ export function currentUser() { return pb.authStore.record; }
 export async function saveProfile(p: Profile): Promise<void> {
   const id = pb.authStore.record?.id;
   if (!id) throw new Error("not logged in");
-  await pb.collection("users").update(id, p);
+  const rec = await pb.collection("users").update(id, p);
+  // Refresh the local auth record so the saved picks survive a page reload
+  // (authStore is persisted to localStorage; loadProfile reads it back).
+  pb.authStore.save(pb.authStore.token, rec as unknown as Parameters<typeof pb.authStore.save>[1]);
 }
 
 export function loadProfile(): Profile {

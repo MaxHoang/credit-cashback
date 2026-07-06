@@ -37,11 +37,14 @@ export default function App() {
   if (showSettings) {
     return (
       <main key={authTick}>
-        <MyCards profile={profile} onChange={(p) => {
-          setProfile(p);
-          if (isLoggedIn()) saveProfile(p).catch(() => {});
-          setShowSettings(false);
-        }} />
+        <MyCards
+          profile={profile}
+          onChange={(p) => {
+            setProfile(p);
+            if (isLoggedIn()) saveProfile(p).catch(() => {});
+          }}
+          onDone={() => setShowSettings(false)}
+        />
       </main>
     );
   }
@@ -68,6 +71,7 @@ export default function App() {
         const loggedIn = isLoggedIn();
         const ranked = rankCards(view.categoryId, cards, {
           merchant: view.merchant,
+          mcc: view.mcc,
           userPicks: loggedIn ? profile.picks : undefined,
           amount: amount ? Number(amount) : undefined,
           onlyOwned,

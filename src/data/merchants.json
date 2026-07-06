@@ -47,8 +47,8 @@
       "grab"
     ],
     "mcc": "4121",
-    "category": "khac",
-    "note": "di chuyển"
+    "category": "du-lich",
+    "note": "di chuyển / ride-hailing (MCC 4121)"
   },
   {
     "name": "Be",
@@ -56,8 +56,8 @@
       "be"
     ],
     "mcc": "4121",
-    "category": "khac",
-    "note": "di chuyển"
+    "category": "du-lich",
+    "note": "di chuyển / ride-hailing (MCC 4121)"
   },
   {
     "name": "Circle K",
@@ -423,7 +423,8 @@
       "gojek"
     ],
     "mcc": "4121",
-    "category": "khac"
+    "category": "du-lich",
+    "note": "di chuyển / ride-hailing (MCC 4121)"
   },
   {
     "name": "Xanh SM",
@@ -572,15 +573,15 @@
       "netflix"
     ],
     "mcc": "4899",
-    "category": "giai-tri"
+    "category": "dich-vu-so"
   },
   {
     "name": "Spotify",
     "aliases": [
       "spotify"
     ],
-    "mcc": "5818",
-    "category": "giai-tri"
+    "mcc": "5815",
+    "category": "dich-vu-so"
   },
   {
     "name": "Bamboo Airways",
@@ -652,15 +653,64 @@
     "aliases": [
       "momo"
     ],
-    "mcc": "5969",
-    "category": "khac"
+    "mcc": "8999",
+    "category": "vi-dien-tu",
+    "note": "ví điện tử (MCC 8999)"
   },
   {
     "name": "ZaloPay",
     "aliases": [
       "zalopay"
     ],
-    "mcc": "5969",
-    "category": "khac"
+    "mcc": "8999",
+    "category": "vi-dien-tu",
+    "note": "ví điện tử (MCC 8999)"
+  },
+  {
+    "name": "Apple App Store",
+    "aliases": [
+      "app store",
+      "apple",
+      "itunes",
+      "apple.com/bill"
+    ],
+    "mcc": "5818",
+    "category": "dich-vu-so",
+    "note": "digital goods (MCC 5818) — có thể không thuộc nhóm khuyến mãi online của một số thẻ"
+  },
+  {
+    "name": "Google Play",
+    "aliases": [
+      "google play",
+      "play store",
+      "google *play"
+    ],
+    "mcc": "5818",
+    "category": "dich-vu-so",
+    "note": "digital goods (MCC 5818) — có thể không thuộc nhóm khuyến mãi online của một số thẻ"
+  },
+  {
+    "name": "Google",
+    "aliases": [
+      "google drive",
+      "google one",
+      "google storage",
+      "google *",
+      "google workspace"
+    ],
+    "mcc": "5817",
+    "category": "dich-vu-so",
+    "note": "digital apps/software (MCC 5817)"
+  },
+  {
+    "name": "YouTube Premium",
+    "aliases": [
+      "youtube",
+      "youtube premium",
+      "google *youtube"
+    ],
+    "mcc": "5815",
+    "category": "dich-vu-so",
+    "note": "digital media (MCC 5815)"
   }
 ]
