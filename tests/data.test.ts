@@ -41,6 +41,6 @@ describe("cards.json integrity", () => {
   });
 
   it("has at least one rate per non-default category across all cards (sanity)", () => {
-    expect(CATEGORIES.length).toBe(13);
+    expect(CATEGORIES.length).toBe(15);
   });
 });

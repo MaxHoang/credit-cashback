@@ -12,6 +12,8 @@ export const CATEGORIES: Category[] = [
   { id: "xang-dau", label: "Xăng dầu", icon: "⛽" },
   { id: "bao-hiem", label: "Bảo hiểm", icon: "🛡️" },
   { id: "suc-khoe-giao-duc", label: "Sức khoẻ / Giáo dục", icon: "💊" },
+  { id: "vi-dien-tu", label: "Ví điện tử", icon: "📲" },
+  { id: "dich-vu-so", label: "Dịch vụ số / Digital", icon: "💻" },
   { id: "nuoc-ngoai", label: "Chi tiêu nước ngoài", icon: "🌐" },
   { id: "khac", label: "Khác", icon: "💳" },
 ];

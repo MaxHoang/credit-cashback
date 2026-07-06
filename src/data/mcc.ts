@@ -17,16 +17,31 @@ put("du-lich",
   "4511", "4582", "4722", "4784", "7011", "7012", "7032", "7033",
   "7512", "7513", "7519");
 
-// Streaming / digital media / entertainment — Netflix 4899, Spotify/YouTube 5815
+// Physical entertainment — cinema, arcades, attractions
 put("giai-tri",
-  "4899", "5815", "7829", "7832", "7841", "7911", "7922", "7929",
+  "7829", "7832", "7841", "7911", "7922", "7929",
   "7932", "7933", "7941", "7991", "7992", "7993", "7994", "7996",
   "7997", "7998", "7999");
 
-// Digital goods / software / online marketplaces — App Store & Google Play 5818, apps 5817
+// Digital services / goods / streaming — Netflix 4899, Spotify/YouTube 5815, App
+// Store & Google Play 5818, apps 5817. Kept as their own category because these
+// MCCs usually fall OUTSIDE cards' e-commerce promo lists (banks pay by MCC).
+put("dich-vu-so",
+  "4816", "4899", "5734", "5735", "5815", "5816", "5817", "5818");
+
+// Online marketplaces / direct marketing (e-commerce)
 put("mua-sam-online",
-  "4816", "5734", "5735", "5816", "5817", "5818", "5964", "5965",
-  "5966", "5967", "5968", "5969");
+  "5262", "5964", "5965", "5966", "5967", "5968", "5969");
+
+// Stored-value / prepaid load → eWallet. NOTE: 8999 (professional services) is a
+// generic catch-all used by Momo/ZaloPay in VN but also by thousands of unrelated
+// merchants, so it is intentionally NOT auto-mapped — Momo/ZaloPay are handled by
+// curated entries. Only the specific stored-value code is mapped here.
+put("vi-dien-tu", "6540");
+
+// Supermarket (grocery) vs convenience — MCC 5411 is grocery, 5499 misc/convenience
+put("sieu-thi", "5411", "5412", "5422");
+put("tien-loi", "5499");
 
 // Dining
 put("an-uong", "5811", "5812", "5813", "5814");

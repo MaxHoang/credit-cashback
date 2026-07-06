@@ -20,75 +20,144 @@
    "https://cake.vn/dieu-kien-dieu-khoan/dieu-kien-va-dieu-khoan-su-dung-the-tin-dung-cake-freedom"
   ],
   "notes": [
-   "20% nhưng cap chặt: 200k/nhóm, 1 triệu/tháng; per-tx 50k (≥200k) / 10k (<200k)",
+   "20% mỗi nhóm, cap 200k/nhóm, tổng 1 triệu/tháng; per-tx 50k (≥200k) / 10k (<200k)",
    "Cần chi ≥ 5 triệu/kỳ mới có hoàn tiền",
-   "Chọn 3 nhóm cố định + 2 nhóm linh hoạt",
-   "Loại trừ khỏi tính chi tiêu tối thiểu (T&C): MCC 4900 tiện ích, 4111 vận tải, 5541 xăng dầu; siêu thị MCC 5411 giới hạn 1 giao dịch/ngày"
+   "Quy tắc mới (2026-07-06): 3 nhóm CỐ ĐỊNH (Online ecommerce 5262, Du lịch/Tour 4722, Thời trang 5611) + CHỌN 2/9 nhóm linh hoạt",
+   "Loại trừ khỏi chi tiêu tối thiểu: MCC 4900/4111/5541; siêu thị 5411 giới hạn 1 giao dịch/ngày"
   ],
   "rates": [
    {
     "category": "mua-sam-online",
     "rate": 0.2,
     "cap_monthly": 200000,
+    "mccs": [
+     "5262"
+    ],
     "group": "fixed",
-    "confidence": "medium",
-    "note": "nhóm cố định"
+    "confidence": "high",
+    "note": "Cố định: Online ecommerce"
    },
    {
     "category": "du-lich",
     "rate": 0.2,
     "cap_monthly": 200000,
+    "mccs": [
+     "4722"
+    ],
     "group": "fixed",
-    "confidence": "medium",
-    "note": "nhóm cố định"
+    "confidence": "high",
+    "note": "Cố định: Du lịch/Tour"
    },
    {
     "category": "thoi-trang",
     "rate": 0.2,
     "cap_monthly": 200000,
+    "mccs": [
+     "5611"
+    ],
     "group": "fixed",
-    "confidence": "medium",
-    "note": "nhóm cố định"
-   },
-   {
-    "category": "an-uong",
-    "rate": 0.2,
-    "cap_monthly": 200000,
-    "group": "flex",
-    "confidence": "medium",
-    "note": "nhóm linh hoạt (chọn 2)"
+    "confidence": "high",
+    "note": "Cố định: Thời trang"
    },
    {
     "category": "sieu-thi",
     "rate": 0.2,
     "cap_monthly": 200000,
-    "group": "flex",
-    "confidence": "medium",
-    "note": "linh hoạt; 1 giao dịch/ngày"
+    "mccs": [
+     "5411"
+    ],
+    "group": "supermarket",
+    "confidence": "high",
+    "note": "Siêu thị"
+   },
+   {
+    "category": "an-uong",
+    "rate": 0.2,
+    "cap_monthly": 200000,
+    "mccs": [
+     "5812",
+     "5814"
+    ],
+    "group": "restaurant",
+    "confidence": "high",
+    "note": "Nhà hàng"
+   },
+   {
+    "category": "du-lich",
+    "rate": 0.2,
+    "cap_monthly": 200000,
+    "mccs": [
+     "4121"
+    ],
+    "group": "transport",
+    "confidence": "high",
+    "note": "Di chuyển"
    },
    {
     "category": "tien-loi",
     "rate": 0.2,
     "cap_monthly": 200000,
-    "group": "flex",
-    "confidence": "medium",
-    "note": "nhóm linh hoạt"
+    "mccs": [
+     "5499"
+    ],
+    "group": "convenience",
+    "confidence": "high",
+    "note": "Cửa hàng tiện lợi"
    },
    {
     "category": "bao-hiem",
     "rate": 0.2,
     "cap_monthly": 200000,
-    "group": "flex",
-    "confidence": "medium",
-    "note": "nhóm linh hoạt"
+    "mccs": [
+     "6300"
+    ],
+    "group": "insurance",
+    "confidence": "high",
+    "note": "Bảo hiểm"
+   },
+   {
+    "category": "du-lich",
+    "rate": 0.2,
+    "cap_monthly": 200000,
+    "mccs": [
+     "7011"
+    ],
+    "group": "hotel",
+    "confidence": "high",
+    "note": "Khách sạn"
+   },
+   {
+    "category": "vi-dien-tu",
+    "rate": 0.2,
+    "cap_monthly": 200000,
+    "mccs": [
+     "8999"
+    ],
+    "group": "ewallet",
+    "confidence": "high",
+    "note": "Ví điện tử (Momo/ZaloPay)"
+   },
+   {
+    "category": "du-lich",
+    "rate": 0.2,
+    "cap_monthly": 200000,
+    "mccs": [
+     "4511"
+    ],
+    "group": "airticket",
+    "confidence": "high",
+    "note": "Vé máy bay"
    },
    {
     "category": "giai-tri",
     "rate": 0.2,
     "cap_monthly": 200000,
-    "group": "flex",
-    "confidence": "medium",
-    "note": "rạp phim; linh hoạt"
+    "mccs": [
+     "7832"
+    ],
+    "group": "cinema",
+    "confidence": "high",
+    "note": "Rạp phim"
    }
   ]
  },

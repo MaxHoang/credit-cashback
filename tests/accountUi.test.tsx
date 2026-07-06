@@ -20,14 +20,28 @@ describe("MyCards", () => {
     expect(onChange.mock.calls.at(-1)![0].owned_cards).toContain("cake-freedom");
   });
 
-  it("shows the flexible pick-groups for an owned pick-n card and records a pick", () => {
+  it("shows Cake's fixed groups (info) + a choose-2-of-9 selector and records a group pick", () => {
     const onChange = vi.fn();
     const profile = { owned_cards: ["cake-freedom"], picks: {} };
     render(<MyCards profile={profile} onChange={onChange} onDone={() => {}} />);
-    expect(screen.getByText(/Nhóm linh hoạt/i)).toBeInTheDocument();
-    fireEvent.click(screen.getByRole("button", { name: /Ăn uống/i }));
+    // fixed groups are shown as info
+    expect(screen.getByText(/Online ecommerce/i)).toBeInTheDocument();
+    // selectable groups are the 9 flexible options
+    expect(screen.getByText(/Chọn 2/i)).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: /Nhà hàng/i }));
     const picks = onChange.mock.calls.at(-1)![0].picks["cake-freedom"];
-    expect(picks.flex).toContain("an-uong");
+    expect(picks.select).toContain("restaurant"); // the group key, not a category
+  });
+
+  it("Cake caps the flexible selection at 2 groups (choosing a 3rd drops the oldest)", () => {
+    const onChange = vi.fn();
+    const profile = { owned_cards: ["cake-freedom"], picks: { "cake-freedom": { select: ["supermarket", "restaurant"] } } };
+    render(<MyCards profile={profile} onChange={onChange} onDone={() => {}} />);
+    fireEvent.click(screen.getByRole("button", { name: /Rạp phim/i }));
+    const sel = onChange.mock.calls.at(-1)![0].picks["cake-freedom"].select;
+    expect(sel).toHaveLength(2);
+    expect(sel).toContain("cinema");
+    expect(sel).not.toContain("supermarket"); // oldest dropped
   });
 
   it("the Done button calls onDone", () => {

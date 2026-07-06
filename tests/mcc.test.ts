@@ -10,16 +10,22 @@ describe("mccToCategory (first-principles: cashback follows the merchant's real 
     expect(mccToCategory("4511")).toBe("du-lich"); // airlines
   });
 
-  it("maps streaming / digital-media MCCs to giai-tri (Netflix 4899, Spotify/YouTube 5815)", () => {
-    expect(mccToCategory("4899")).toBe("giai-tri");
-    expect(mccToCategory("5815")).toBe("giai-tri");
-    expect(mccToCategory("7832")).toBe("giai-tri"); // cinema
+  it("maps digital services/goods/streaming to dich-vu-so (Netflix 4899, App Store 5818, apps 5817)", () => {
+    expect(mccToCategory("4899")).toBe("dich-vu-so");
+    expect(mccToCategory("5815")).toBe("dich-vu-so");
+    expect(mccToCategory("5818")).toBe("dich-vu-so");
+    expect(mccToCategory("5817")).toBe("dich-vu-so");
+    expect(mccToCategory("7832")).toBe("giai-tri"); // physical cinema stays entertainment
   });
 
-  it("maps digital-goods / software MCCs to mua-sam-online (App Store/Play 5818, apps 5817)", () => {
-    expect(mccToCategory("5818")).toBe("mua-sam-online");
-    expect(mccToCategory("5817")).toBe("mua-sam-online");
-    expect(mccToCategory("5734")).toBe("mua-sam-online"); // computer software
+  it("does NOT auto-map generic 8999 (Momo/ZaloPay handled via curated entries; 8999 is a catch-all)", () => {
+    expect(mccToCategory("8999")).toBeNull();
+    expect(mccToCategory("6540")).toBe("vi-dien-tu"); // specific stored-value load code
+  });
+
+  it("maps supermarket 5411 → sieu-thi and convenience 5499 → tien-loi (ISO standard)", () => {
+    expect(mccToCategory("5411")).toBe("sieu-thi");
+    expect(mccToCategory("5499")).toBe("tien-loi");
   });
 
   it("maps health/education/insurance MCCs correctly", () => {
@@ -28,15 +34,15 @@ describe("mccToCategory (first-principles: cashback follows the merchant's real 
     expect(mccToCategory("6300")).toBe("bao-hiem");
   });
 
-  it("returns null for AMBIGUOUS MCCs so hand-curated category wins (5411 super vs convenience)", () => {
-    expect(mccToCategory("5411")).toBeNull();
-    expect(mccToCategory("5499")).toBeNull();
+  it("returns null for genuinely ambiguous / unknown MCCs so curated category wins", () => {
+    expect(mccToCategory("5399")).toBeNull(); // general merch
+    expect(mccToCategory("5311")).toBeNull(); // department store
     expect(mccToCategory("0000")).toBeNull();
     expect(mccToCategory("")).toBeNull();
   });
 
   it("only ever returns valid category ids", () => {
-    for (const mcc of ["4121", "4899", "5818", "8011", "5541", "5812"]) {
+    for (const mcc of ["4121", "4899", "5818", "8011", "5541", "5812", "8999", "5411"]) {
       const c = mccToCategory(mcc);
       if (c) expect(CATEGORY_IDS.has(c)).toBe(true);
     }
@@ -47,8 +53,11 @@ describe("recordToMerchant applies the canonical MCC map over a wrong stored cat
   it("corrects Grab wrongly stored as 'khac' → du-lich via MCC 4121", () => {
     expect(recordToMerchant({ name: "GRAB", mcc: "4121", category: "khac" }).category).toBe("du-lich");
   });
-  it("keeps the stored category for ambiguous MCCs (5411 stays as curated)", () => {
-    expect(recordToMerchant({ name: "SOME MART", mcc: "5411", category: "tien-loi" }).category).toBe("tien-loi");
+  it("corrects a 5411 merchant stored as tien-loi → sieu-thi (ISO grocery)", () => {
+    expect(recordToMerchant({ name: "SOME MART", mcc: "5411", category: "tien-loi" }).category).toBe("sieu-thi");
+  });
+  it("keeps the stored category for ambiguous MCCs (5399 stays as curated)", () => {
+    expect(recordToMerchant({ name: "GEN STORE", mcc: "5399", category: "mua-sam-offline" }).category).toBe("mua-sam-offline");
   });
   it("falls back to khac when neither MCC nor stored category is valid", () => {
     expect(recordToMerchant({ name: "X", mcc: "0000", category: "bogus" }).category).toBe("khac");

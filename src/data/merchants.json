@@ -573,7 +573,7 @@
       "netflix"
     ],
     "mcc": "4899",
-    "category": "giai-tri"
+    "category": "dich-vu-so"
   },
   {
     "name": "Spotify",
@@ -581,7 +581,7 @@
       "spotify"
     ],
     "mcc": "5815",
-    "category": "giai-tri"
+    "category": "dich-vu-so"
   },
   {
     "name": "Bamboo Airways",
@@ -653,16 +653,18 @@
     "aliases": [
       "momo"
     ],
-    "mcc": "5969",
-    "category": "khac"
+    "mcc": "8999",
+    "category": "vi-dien-tu",
+    "note": "ví điện tử (MCC 8999)"
   },
   {
     "name": "ZaloPay",
     "aliases": [
       "zalopay"
     ],
-    "mcc": "5969",
-    "category": "khac"
+    "mcc": "8999",
+    "category": "vi-dien-tu",
+    "note": "ví điện tử (MCC 8999)"
   },
   {
     "name": "Apple App Store",
@@ -673,7 +675,7 @@
       "apple.com/bill"
     ],
     "mcc": "5818",
-    "category": "mua-sam-online",
+    "category": "dich-vu-so",
     "note": "digital goods (MCC 5818) — có thể không thuộc nhóm khuyến mãi online của một số thẻ"
   },
   {
@@ -684,7 +686,7 @@
       "google *play"
     ],
     "mcc": "5818",
-    "category": "mua-sam-online",
+    "category": "dich-vu-so",
     "note": "digital goods (MCC 5818) — có thể không thuộc nhóm khuyến mãi online của một số thẻ"
   },
   {
@@ -697,7 +699,7 @@
       "google workspace"
     ],
     "mcc": "5817",
-    "category": "mua-sam-online",
+    "category": "dich-vu-so",
     "note": "digital apps/software (MCC 5817)"
   },
   {
@@ -708,7 +710,7 @@
       "google *youtube"
     ],
     "mcc": "5815",
-    "category": "giai-tri",
+    "category": "dich-vu-so",
     "note": "digital media (MCC 5815)"
   }
 ]

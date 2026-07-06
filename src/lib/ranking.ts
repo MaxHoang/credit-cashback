@@ -70,10 +70,16 @@ export function effectiveRate(card: Card, categoryId: string, opts: Opts): EffRe
     chosen = undefined;
   }
 
-  // Personalization: if the user declared their picks, a pickable group applies only to the selected category.
+  // Personalization: if the user declared their picks, a pickable group applies only when chosen.
+  // Two paradigms: MB Priority stores the chosen *category* under the group key (mam1/mam2);
+  // Cake stores the chosen *group keys* in a list (choose 2 of 9). Match either.
   if (chosen && chosen.group && chosen.group !== "fixed" && opts.userPicks) {
-    const sel = opts.userPicks[card.id]?.[chosen.group];
-    const selected = Array.isArray(sel) ? sel.includes(categoryId) : sel === categoryId;
+    const cardPicks = opts.userPicks[card.id] ?? {};
+    const g = chosen.group;
+    const byGroup = cardPicks[g];
+    const selectedByCategory = Array.isArray(byGroup) ? byGroup.includes(categoryId) : byGroup === categoryId;
+    const selectedByGroupKey = Object.values(cardPicks).some((v) => (Array.isArray(v) ? v : [v]).includes(g));
+    const selected = selectedByCategory || selectedByGroupKey;
     if (selected) conditions.push("Bạn đã chọn nhóm này ✓");
     else { conditions.push("Bạn chưa chọn nhóm này (về mức cơ bản)"); chosen = undefined; }
   }
@@ -85,7 +91,8 @@ export function effectiveRate(card: Card, categoryId: string, opts: Opts): EffRe
 
   if (card.min_monthly_spend > 0) conditions.push(`Cần chi tối thiểu ${formatVnd(card.min_monthly_spend)}/tháng`);
   if (capMonthly) conditions.push(`Cap ${formatVnd(capMonthly)}/tháng`);
-  if (chosen?.group && !opts.userPicks && PICK_CONDITION[chosen.group]) conditions.push(PICK_CONDITION[chosen.group]);
+  if (chosen?.group && chosen.group !== "fixed" && !opts.userPicks)
+    conditions.push(PICK_CONDITION[chosen.group] ?? "Nhóm linh hoạt — chỉ đạt nếu bạn chọn nhóm này (Cake chọn 2/9)");
   if (card.scheme === "spend-tier" && chosen) conditions.push("Tỷ lệ/cap theo mức chi tiêu hàng tháng trên thẻ này (đang hiện mức tốt nhất)");
   if (card.reward_type === "points") conditions.push("Ước tính từ điểm thưởng (1 điểm = 1 VND)");
   if (card.reward_type === "miles") conditions.push("Ước tính từ dặm thưởng");
